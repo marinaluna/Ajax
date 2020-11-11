@@ -26,6 +26,9 @@ ARM7TDMI::ARM7TDMI(std::shared_ptr<Core::Bus>& bus, std::shared_ptr<Debug::Logge
     _logger (logger) {
 
     _logger->log("Created ARM7TDMI!");
+    _logger->logRegs(regs, SPSRs, CPSR);
 }
+
+
 
 } // namespace Core
