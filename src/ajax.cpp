@@ -17,13 +17,16 @@
 #include <locale>
 
 #include "core/gba.h"
+#include "core/cpu/arm7tdmi.h"
 #include "utils/strutils.h"
 #include "common/types.h"
 #include "debug/logger.h"
 
 
 void printUsage(const char* path_to_exec) {
-    std::cout << "Usage: " << path_to_exec << " bios_path rom_path [--skip-bios=bool] [--scale=int]" << std::endl;
+    std::cout << "Usage: " << path_to_exec <<
+        " bios_path rom_path [--skip-bios=bool] [--scale=int]"
+        << std::endl;
 }
 
 int main(int argc, char** argv) {
@@ -125,6 +128,14 @@ int main(int argc, char** argv) {
     std::shared_ptr<Debug::Logger> logger = std::shared_ptr<Debug::Logger>( new Debug::Logger() );
 
     Core::GBA* gba = new Core::GBA(bios, rom, options, logger);
+
+
+    /*
+    * Free the memory that we allocated.
+    */
+    free(bios);
+    free(rom);
+    delete gba;
 
     return 0;
 }
