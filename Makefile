@@ -18,8 +18,13 @@ build/%.o:%.cpp
 	$(CXX) -O2 -c $(CXXFLAGS) $< -o $@
 
 run:$(BINARY)
-	@$(BINARY)
+	@$(BINARY) roms/gba_bios.bin roms/armwrestler.gba
 	
 clean:
 	rm -rf build/*
 	mkdir -p build/src/
+	mkdir -p build/src/core
+	mkdir -p build/src/core/memory
+	mkdir -p build/src/core/cpu
+	mkdir -p build/src/utils
+	mkdir -p build/src/debug
