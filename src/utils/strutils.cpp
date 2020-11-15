@@ -40,12 +40,7 @@ std::vector<std::string> strSplit(std::string in_str, char del) {
 }
 
 std::string getExtension(std::string in_str) {
-    std::vector<std::string> splitStr = strSplit(in_str, '.');
-    // There should be at least two strings:
-    // The file name and the extension.
-    if(splitStr.size() < 2)
-        return "";
-    return splitStr.at(splitStr.size() - 1);
+    return in_str.substr(in_str.find_last_of(".") + 1);
 }
 
 } // namespace Utils
